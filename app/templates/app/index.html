@@ -1,0 +1,117 @@
+<!-- This file is used to display charts on the web browser using chart.js  -->
+
+{% extends 'partials/base.html' %}
+
+{%block content%}
+    <div class="row">
+        <div class="col-md-6">
+            <canvas id="chart1"></canvas>
+        </div>
+        <div class="col-md-6">
+            <canvas id="chart2"></canvas>
+        </div> 
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <canvas id="chart3"></canvas>
+        </div>
+        <div class="col-md-6">
+            <canvas id="chart4"></canvas>
+        </div>
+    </div> 
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+        
+        // setting x axis with time values
+        var obj = [{% for c in Count %} "{{ c.time }}", {% endfor %}]
+        var time_value = []
+        for(var i=0; i< obj.length; i++){
+            time_value[i] = JSON.stringify(obj[i])
+        }
+
+
+        //  Retrieve data for chart1
+        var chart1Data = {
+            labels: time_value,
+            datasets: [{
+                label: 'Step Count',
+                data: [{% for c in Count %} {{ c.Count }}, {% endfor %}],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        };
+        var chart1Ctx = document.getElementById('chart1').getContext('2d');
+        var chart1 = new Chart(chart1Ctx, {
+            type: 'bar',
+            data: chart1Data,
+            options: {}
+        });
+
+
+
+        // Retrieve data for chart2 
+        var chart2Data = {
+            labels : time_value,
+            datasets: [{
+                label: 'Calories Burnt',
+                data: [{% for j in Joule %} {{ j.Joule }}, {% endfor %}],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        };
+        var chart2Ctx = document.getElementById('chart2').getContext('2d');
+        var chart2 = new Chart(chart2Ctx, {
+            type: 'line',
+            data: chart2Data,
+            options: {}
+        });
+
+
+
+
+        // Retrieve data for chart3
+        var chart3Data = {
+            labels : time_value,
+            datasets: [{
+                label: 'Distance Covered',
+                data: [{% for k in KM %} {{ k.KM }}, {% endfor %}],
+                backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                borderColor: 'rgba(255, 206, 86, 1)',
+                borderWidth: 1
+            }]
+        };
+        var chart3Ctx = document.getElementById('chart3').getContext('2d');
+        var chart3 = new Chart(chart3Ctx, {
+            type: 'polarArea',
+            data: chart3Data,
+            options: {}
+        });
+
+
+
+
+        // Retrieve data for chart4
+        var chart4Data = {
+            labels : time_value,
+            datasets: [{
+                label: 'Heart Rate',
+                data: [{% for b in BPM %} {{ b.BPM }}, {% endfor %}],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192)',
+                borderWidth: 1
+            }]
+        };
+        var chart4Ctx = document.getElementById('chart4').getContext('2d');
+        var chart4 = new Chart(chart4Ctx, {
+            type: 'radar',
+            data: chart4Data,
+            options: {}
+        });
+
+    </script>
+
+{%endblock%}

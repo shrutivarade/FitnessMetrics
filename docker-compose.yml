@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  web:
+    build: .
+    command: ["/code/run-app"]   
+    volumes:
+      - .:/code
+    ports:
+      - "8888:8888"
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: fmdashboard
+    ports:
+      - "5432:5432"

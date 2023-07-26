@@ -1,0 +1,26 @@
+<!-- This file is used to display the nav bar of the web page. -->
+  
+<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" style="text-align: center;">Fiteness Metrics Dashboard</a>
+      <form class="d-flex" role="search">
+
+        <button class="btn btn-outline-success" type="submit" id="run-database-script-button">Refresh</button>
+        <script>
+          const runButton = document.querySelector("#run-database-script-button");
+          runButton.addEventListener("click", () => {
+            fetch("/run-database-script/")
+              .then(response => response.json())
+              .then(data => console.log(data))
+              .catch(error => console.error(error));
+          });
+        </script>
+      </form>
+    </div>
+  </nav>
+
+  <style>
+    button {
+      margin: 5px;
+    }
+  </style>

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# The above line specifies that this is a bash script.
+python database.py &&
+# This line executes a Python script named 'database.py'. It is not clear what this script does, but presumably it is related to the database setup or configuration of the Django project.
+# The '&&' operator ensures that the next command will only be executed if this command succeeds (i.e. returns a zero exit code).
+python manage.py makemigrations &&
+# This line executes the 'makemigrations' command of the Django web framework, which generates new database migrations based on changes made to the models of the project.
+# The '&&' operator ensures that the next command will only be executed if this command succeeds (i.e. returns a zero exit code).
+
+python manage.py migrate &&
+# This line executes the 'migrate' command of the Django web framework, which applies any pending database migrations to the database.
+# The '&&' operator ensures that the next command will only be executed if this command succeeds (i.e. returns a zero exit code).
+
+
+
+python manage.py runserver 0.0.0.0:8888
+# This line starts the Django development server, which allows the project to be accessed via a web browser at the specified address (in this case, '0.0.0.0:8888').

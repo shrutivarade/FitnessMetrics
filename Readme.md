@@ -3,7 +3,7 @@
 
 The Fitness Metrics Dashboard is a web application built with Django, Chart.js, and PostgreSQL, allowing users to visualize and track their fitness metrics. The dashboard consists of four graphs displaying calories burnt, distance covered, step count, and heart rate data.
 
-![Fitness Metrics Dashboard]('https://github.com/shrutivarade/FitnessMetrics/blob/main/gfx/Fitness%20Dashboard.png')
+![Fitness Metrics Dashboard](<https://github.com/shrutivarade/FitnessMetrics/blob/main/gfx/Fitness%20Dashboard.png>)
 
 ## Features
 
